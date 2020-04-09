@@ -391,15 +391,7 @@ $formNote = array(
     });
 
     $(document).on("change", "#ids", function (e) {
-         $.ajax({
-            type: 'get',
-            data: "<?=base_url(); ?>",
-            url: url,
-            success: function (data) {
-                vehicleSelectize.setValue();
-            }
-        });
-        
+             
     });
     $(document).on("submit", "#saveInput_tag", function (e) {
         e.preventDefault();

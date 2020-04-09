@@ -22,11 +22,12 @@
                     <div class="row">
                         <div class="col-md-3 offset-9">
                             <input class="search sele ctable form-control" type="search" placeholder="Search" data-column="all">
+                            <br>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <table class="table table-bordered table-striped" id="myTable">
+                        <div class="col-md-12 table-responsive">
+                            <table class="table table-bordered table-striped table-sm" id="myTable">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th class="filter-select filter-onlyAvail">
@@ -41,7 +42,7 @@
                                         <th class="filter-select filter-onlyAvail">
                                             Transporter Name
                                         </th>
-                                        <th >
+                                        <th>
                                             Gross Weight
                                         </th>
                                         <th>
@@ -68,36 +69,41 @@
                                         <th>
                                             Note
                                         </th>
+                                        <th class="filter-false">
+                                            Action
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="13" class="ts-pager">
-                                <div class="form-inline">
-                                    <div class="btn-group btn-group-sm mx-1" role="group">
-                                        <button type="button" class="btn btn-secondary first" title="first">⇤</button>
-                                        <button type="button" class="btn btn-secondary prev" title="previous">←</button>
-                                    </div>
-                                    <span class="pagedisplay"></span>
-                                    <div class="btn-group btn-group-sm mx-1" role="group">
-                                        <button type="button" class="btn btn-secondary next" title="next">→</button>
-                                        <button type="button" class="btn btn-secondary last" title="last">⇥</button>
-                                    </div>
-                                    <select class="form-control-sm custom-select px-1 pagesize" title="Select page size">
-                                        <option selected="selected" value="1">10</option>
-                                        <option value="20">20</option>
-                                        <option value="30">30</option>
-                                        <option value="all">All Rows</option>
-                                    </select>
-                                    <select class="form-control-sm custom-select px-4 mx-1 pagenum" title="Select page number"></select>
-                                </div>
-                                </th>
-                                </tr>
+                                        <th colspan="14" class="ts-pager">
+                                            <div class="form-inline">
+                                                <div class="btn-group btn-group-sm mx-1" role="group">
+                                                    <button type="button" class="btn btn-secondary first" title="first">⇤</button>
+                                                    <button type="button" class="btn btn-secondary prev" title="previous">←</button>
+                                                </div>
+                                                <span class="pagedisplay"></span>
+                                                <div class="btn-group btn-group-sm mx-1" role="group">
+                                                    <button type="button" class="btn btn-secondary next" title="next">→</button>
+                                                    <button type="button" class="btn btn-secondary last" title="last">⇥</button>
+                                                </div>
+                                                <select class="form-control-sm custom-select px-1 pagesize" title="Select page size">
+                                                    <option selected="selected" value="1">10</option>
+                                                    <option value="20">20</option>
+                                                    <option value="30">30</option>
+                                                    <option value="all">All Rows</option>
+                                                </select>
+                                                <select class="form-control-sm custom-select px-4 mx-1 pagenum" title="Select page number"></select>
+                                            </div>
+                                        </th>
+                                    </tr>
                                 </tfoot>
                                 <tbody>
                                     <?php
+                                    $sum = 0;
                                     foreach ($purchase as $p) {
-                                        ?>
+                                        $sum += $p->net_weight;
+                                    ?>
                                         <tr>
                                             <td><?= $p->date; ?></td>
                                             <td><?= $p->id; ?></td>
@@ -112,11 +118,23 @@
                                             <td><?= $p->d_name; ?></td>
                                             <td><?= ($p->carting_id == 1) ? "SELF" : "CARTING"; ?></td>
                                             <td><?= $p->note; ?></td>
+                                            <td>
+                                                <a class="btn btn-success btn-sm ">edit</a>
+                                                <a class="btn btn-danger btn-sm ">Delete</a>
+                                            </td>
                                         </tr>
-                                        <?php
+                                    <?php
                                     }
                                     ?>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="6" align="right">Total</td>
+                                        <td><?= $sum; ?></td>
+                                        <td colspan="7"></td>
+                                    </tr>
+                                </tfoot>
+
                             </table>
                         </div>
                     </div>
@@ -126,12 +144,15 @@
     </div>
 </div>
 <script>
-    $(function () {
+    $(function() {
         var $table = $("#myTable").tablesorter({
             theme: "bootstrap",
             widthFixed: false,
-            widgets: ["zebra", "columns", "filter"],
+            widgets: ["zebra", "columns", "filter", 'resizable'],
             widgetOptions: {
+                math_data: 'math',
+                resizable_addLastColumn: true,
+                resizable_widths: ['100px', '100px', '150px', '200px','100px','100px','100px','120px','100px','200px','100px','100px','120px','130px',],
                 zebra: ["even", "odd"],
                 columns: ["primary", "secondary", "tertiary"],
                 filter_searchFiltered: false,
