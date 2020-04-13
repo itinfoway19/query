@@ -11,6 +11,12 @@ class Master extends Controller {
         $this->load->model("input_tag_model");
     }
 
+    public function index($title, $module) {
+        $data["title"] = $title;
+            $data["module"] = $module;
+            $this->display("index", $data);
+    }
+
     public function model($title, $module) {
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
             $capArray = array_map('strtoupper', $this->input->post());
