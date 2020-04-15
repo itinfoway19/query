@@ -296,7 +296,7 @@ $formCarting_id = array(
     }
     function material() {
         return $.ajax({
-            url: '<?= base_url("master/json/material/2/?select=name,id"); ?>',
+            url: '<?= base_url("master/json/material/1/?select=name,id"); ?>',
             type: 'POST',
             data: {'group_type': '0', '<?= $this->security->get_csrf_token_name(); ?>': getCookie('csrf_cookie_name')},
             dataType: 'json',
@@ -311,7 +311,7 @@ $formCarting_id = array(
                     var $select = $('#material_id').selectize();
                     var materialSelectize = $select[0].selectize;
                 } else {
-                    window.location = "<?= base_url("master/add/material/2") ?>";
+                    window.location = "<?= base_url("master/add/material/1") ?>";
                 }
                 $('input[name="<?= $this->security->get_csrf_token_name(); ?>"]').val(getCookie('csrf_cookie_name'));
             }
@@ -357,15 +357,15 @@ $formCarting_id = array(
                     var $select = $('#place_id').selectize();
                     var placeSelectize = $select[0].selectize;
                 } else {
-                   // window.location = "<?= base_url("master/add/place/1") ?>";
+                    window.location = "<?= base_url("master/add/place/1") ?>";
                 }
                 $('input[name="<?= $this->security->get_csrf_token_name(); ?>"]').val(getCookie('csrf_cookie_name'));
-            }
+            } 
         });
     }
     function party() {
         return $.ajax({
-            //url: '<?= base_url("master/json/party/1/?select=name,id"); ?>',
+           url: '<?= base_url("master/json/party/1/?select=name,id"); ?>',
             type: 'POST',
             data: {'group_type': '0', '<?= $this->security->get_csrf_token_name(); ?>': getCookie('csrf_cookie_name')},
             dataType: 'json',
