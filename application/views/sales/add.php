@@ -16,6 +16,7 @@ $formDate = array(
     'value' => isset($date) ? $date : date("Y-m-d"),
 );
 
+
 $formGross_no = array(
     'type' => 'text',
     'name' => 'gross_weight',
