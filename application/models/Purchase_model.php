@@ -12,7 +12,7 @@ class Purchase_model extends CI_Model {
         return $query->last_row();
     }
 
-    public function view($where = null, $select = "pu.*,m.name as m_name,m.id as m_id,q.name as q_name,q.id as q_id,r.name as r_name,r.id as m_id,d.name as d_name,d.id as m_id,v.name as v_name,v.id as v_id") {
+    public function view($where = null, $select = "pu.*,m.name as m_name,m.id as m_id,q.name as q_name,q.id as q_id,r.name as r_name,r.id as r_id,d.name as d_name,d.id as d_id,v.name as v_name,v.id as v_id") {
         $this->db->trans_start();
         if (!is_null($where)) {
             $this->db->where("pu.id", $where);

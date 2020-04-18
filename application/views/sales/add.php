@@ -39,6 +39,8 @@ $formTransporter_no = array(
 $formTare_weight = array(
     'type' => 'text',
     'name' => 'tare_weight',
+    'data-validation' => "number",
+    "data-validation-allowing" => "range[999;99999]",
     'id' => 'tare_weight',
     'class' => 'form-control',
     "placeholder" => "Enter Vehicle Tare Weight",
@@ -49,6 +51,8 @@ $formNet_weight_no = array(
     'type' => 'text',
     'name' => 'net_weight',
     'id' => 'net_weight',
+    'data-validation' => "number",
+    "data-validation-allowing" => "range[999;99999]",
     'class' => 'form-control',
     "placeholder" => "Enter net weight",
     'readonly' => 'readonly',
@@ -67,18 +71,25 @@ $formRoyalty_no = array(
     'name' => 'royalty_number',
     'id' => 'royalty_number',
     'class' => 'form-control',
+    'data-validation' => "length",
+    "data-validation-length" => "2-55",
     "placeholder" => "Enter Royalty Number",
-    'value' => isset($royalty_number) ? $id : "",
+    'value' => isset($royalty_number) ? $royalty_number : "NO",
 );
 $formRoyalty_tone = array(
     'type' => 'text',
     'name' => 'royalty_tone',
     'id' => 'royalty_tone',
+    'data-validation' => "length",
+    "data-validation-length" => "2-6",
     'class' => 'form-control',
     "placeholder" => "Enter Royalty Tone",
-    'value' => isset($royalty_tone) ? $id : "",
+    'value' => isset($royalty_tone) ? $royalty_tone : "NO",
 );
-
+$carting = array(
+    '1' => 'SELF',
+    '2' => 'CARTING',
+);
 $formCarting_id = array(
     'type' => 'text',
     'name' => 'carting_id',
@@ -87,7 +98,6 @@ $formCarting_id = array(
     "placeholder" => "Enter Carting",
     'value' => isset($carting_id) ? $id : "",
 );
-
 ?>
 
 
@@ -98,14 +108,8 @@ $formCarting_id = array(
             <div class="card">
                 <?= form_open(); ?>
                 <div class="card-header">
-                    <h3 class="card-title">ADD</h3>
+                    <h3 class="card-title">SALES</h3>
 
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                            <i class="fas fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-                            <i class="fas fa-times"></i></button>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row justify-content-between">
@@ -212,7 +216,7 @@ $formCarting_id = array(
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Carting</label>
-                                 <?= form_input($formCarting_id); ?>
+                                <?= form_dropdown("carting_id", $carting, isset($carting_id) ? $carting_id : null, ["class" => "selectize", "id" => "carting_id"]); ?>
                             </div>
                         </div>
                         <div class="col-md-5">
@@ -297,7 +301,7 @@ $formCarting_id = array(
     }
     function material() {
         return $.ajax({
-            url: '<?= base_url("master/json/material/1/?select=name,id"); ?>',
+            url: '<?= base_url("master/json/material/2/?select=name,id"); ?>',
             type: 'POST',
             data: {'group_type': '0', '<?= $this->security->get_csrf_token_name(); ?>': getCookie('csrf_cookie_name')},
             dataType: 'json',
@@ -312,7 +316,7 @@ $formCarting_id = array(
                     var $select = $('#material_id').selectize();
                     var materialSelectize = $select[0].selectize;
                 } else {
-                    window.location = "<?= base_url("master/add/material/1") ?>";
+                    window.location = "<?= base_url("master/add/material/2") ?>";
                 }
                 $('input[name="<?= $this->security->get_csrf_token_name(); ?>"]').val(getCookie('csrf_cookie_name'));
             }
@@ -320,7 +324,7 @@ $formCarting_id = array(
     }
     function loading() {
         return $.ajax({
-            url: '<?= base_url("master/json/loading/1/?select=name,id"); ?>',
+            url: '<?= base_url("master/json/loading/2/?select=name,id"); ?>',
             type: 'POST',
             data: {'group_type': '0', '<?= $this->security->get_csrf_token_name(); ?>': getCookie('csrf_cookie_name')},
             dataType: 'json',
@@ -335,7 +339,7 @@ $formCarting_id = array(
                     var $select = $('#loading_id').selectize();
                     var loadingSelectize = $select[0].selectize;
                 } else {
-                    window.location = "<?= base_url("master/add/loading/1") ?>";
+                    window.location = "<?= base_url("master/add/loading/2") ?>";
                 }
                 $('input[name="<?= $this->security->get_csrf_token_name(); ?>"]').val(getCookie('csrf_cookie_name'));
             }
@@ -343,7 +347,7 @@ $formCarting_id = array(
     }
     function place() {
         return $.ajax({
-            url: '<?= base_url("master/json/place/1/?select=name,id"); ?>',
+            url: '<?= base_url("master/json/place/2/?select=name,id"); ?>',
             type: 'POST',
             data: {'group_type': '0', '<?= $this->security->get_csrf_token_name(); ?>': getCookie('csrf_cookie_name')},
             dataType: 'json',
@@ -358,15 +362,15 @@ $formCarting_id = array(
                     var $select = $('#place_id').selectize();
                     var placeSelectize = $select[0].selectize;
                 } else {
-                    window.location = "<?= base_url("master/add/place/1") ?>";
+                    window.location = "<?= base_url("master/add/place/2") ?>";
                 }
                 $('input[name="<?= $this->security->get_csrf_token_name(); ?>"]').val(getCookie('csrf_cookie_name'));
-            } 
+            }
         });
     }
     function party() {
         return $.ajax({
-           url: '<?= base_url("master/json/party/1/?select=name,id"); ?>',
+            url: '<?= base_url("master/json/party/2/?select=name,id"); ?>',
             type: 'POST',
             data: {'group_type': '0', '<?= $this->security->get_csrf_token_name(); ?>': getCookie('csrf_cookie_name')},
             dataType: 'json',
@@ -381,7 +385,7 @@ $formCarting_id = array(
                     var $select = $('#party_id').selectize();
                     var partySelectize = $select[0].selectize;
                 } else {
-                    window.location = "<?= base_url("master/add/party/1") ?>";
+                    window.location = "<?= base_url("master/add/party/2") ?>";
                 }
                 $('input[name="<?= $this->security->get_csrf_token_name(); ?>"]').val(getCookie('csrf_cookie_name'));
             }
@@ -398,13 +402,14 @@ $formCarting_id = array(
                 if (res.length != 0) {
                     var royalty_id = <?= isset($royalty_id) ? $royalty_id : "''"; ?>;
                     $("#royalty_id").html("");
+                    $("#royalty_id").append("<option value='0' " + ((0 == royalty_id) ? "selected" : "") + ">NO</option>")
                     for (var i = 0; i < res.length; i++) {
                         $("#royalty_id").append("<option value='" + res[i]["id"] + "' " + ((res[i]["id"] == royalty_id) ? "selected" : "") + ">" + res[i]["name"] + "</option>")
                     }
                     var $select = $('#royalty_id').selectize();
                     var royaltySelectize = $select[0].selectize;
                 } else {
-                    //window.location = "<?= base_url("master/add/royalty/2") ?>";
+                    window.location = "<?= base_url("master/add/royalty/2") ?>";
                 }
                 $('input[name="<?= $this->security->get_csrf_token_name(); ?>"]').val(getCookie('csrf_cookie_name'));
             }
@@ -412,7 +417,7 @@ $formCarting_id = array(
     }
     function driver() {
         return  $.ajax({
-            url: '<?= base_url("master/json/driver/1/?select=name,id"); ?>',
+            url: '<?= base_url("master/json/driver/2/?select=name,id"); ?>',
             type: 'POST',
             data: {'group_type': '0', '<?= $this->security->get_csrf_token_name(); ?>': getCookie('csrf_cookie_name')},
             dataType: 'json',
@@ -427,7 +432,7 @@ $formCarting_id = array(
                     var $select = $('#driver_id').selectize();
                     var driverSelectize = $select[0].selectize;
                 } else {
-                    window.location = "<?= base_url("master/add/driver/1") ?>";
+                    window.location = "<?= base_url("master/add/driver/2") ?>";
                 }
                 $('input[name="<?= $this->security->get_csrf_token_name(); ?>"]').val(getCookie('csrf_cookie_name'));
             }
@@ -467,8 +472,8 @@ $formCarting_id = array(
             displayingPopup = true;
             focused = $(':focus').attr('id');
             fLocation = focused.slice(0, -14);
-            if (fLocation == "material" || fLocation == "loading" || fLocation == "place" || fLocation == "party"|| fLocation == "royalty" || fLocation == "driver") {
-                $('.antique-details-container').load("<?= base_url("master/model/"); ?>" + fLocation + "/" + 1, null,
+            if (fLocation == "material" || fLocation == "loading" || fLocation == "place" || fLocation == "party" || fLocation == "royalty" || fLocation == "driver") {
+                $('.antique-details-container').load("<?= base_url("master/model/"); ?>" + fLocation + "/" + 2, null,
                         function () {
                             $('#myModal').modal().show()
                                     .one('hidden.bs.modal', function () {
@@ -493,15 +498,15 @@ $formCarting_id = array(
     });
 
     $(document).on("change", "#ids", function (e) {
-         $.ajax({
+        $.ajax({
             type: 'get',
-            data: "<?=base_url(); ?>",
+            data: "<?= base_url(); ?>",
             url: url,
             success: function (data) {
                 vehicleSelectize.setValue();
             }
         });
-        
+
     });
     $(document).on("submit", "#saveInput_tag", function (e) {
         e.preventDefault();
@@ -528,11 +533,11 @@ $formCarting_id = array(
                     allSelAjaxKey = loading();
                 } else if (fLocation == "place") {
                     allSelAjaxKey = place();
-                }else if (fLocation == "party") {
+                } else if (fLocation == "party") {
                     allSelAjaxKey = party();
-                }      else if (fLocation == "royalty") {
+                } else if (fLocation == "royalty") {
                     allSelAjaxKey = royalty();
-                }else if (fLocation == "driver") {
+                } else if (fLocation == "driver") {
                     allSelAjaxKey = driver();
                 } else if (fLocation == "vehicle") {
                     allSelAjaxKey = vehicle();
@@ -542,6 +547,16 @@ $formCarting_id = array(
                 });
             }
         });
+    });
+    $(document).on("change","#royalty_id",function (){
+        var temp=$(this).val();
+        if(temp>1){
+            $("#royalty_number").val("");
+            $("#royalty_tone").val("");
+        }else{
+            $("#royalty_number").val("NO");
+            $("#royalty_tone").val("NO");
+        }
     });
 </script>
 

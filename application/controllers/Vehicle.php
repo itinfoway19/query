@@ -11,7 +11,8 @@ class Vehicle extends Controller {
     }
 
     public function index() {
-        
+        $data["data"] = $this->vehicle_model->view();
+        $this->display('index', $data);
     }
 
     public function add() {
@@ -24,9 +25,22 @@ class Vehicle extends Controller {
                 redirect("vehicle/add");
             }
         }
-        $temp = $this->vehicle_model->view(["module" => 1]);
-
         $this->display('add');
+    }
+
+    public function edit($id = null) {
+        if ($this->input->server('REQUEST_METHOD') == 'POST') {
+            $capArray = array_map('strtoupper', $this->input->post());
+            $data = $this->vehicle_model->edit($capArray, $id);
+            if (!empty($data)) {
+                redirect("vehicle/add");
+            } else {
+                redirect("vehicle/add");
+            }
+        } else {
+            $data = $this->vehicle_model->view($id);
+        }
+        $this->display("add", $data[0]);
     }
 
     public function model() {

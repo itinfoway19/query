@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class sales_model extends CI_Model {
+class Sales_model extends CI_Model {
 
     public function getId($table) {
         $this->db->trans_start();
@@ -12,16 +12,18 @@ class sales_model extends CI_Model {
         return $query->last_row();
     }
 
-    public function view($where = null, $select = "pu.*,m.name as m_name,m.id as m_id,q.name as q_name,q.id as q_id,r.name as r_name,r.id as m_id,d.name as d_name,d.id as m_id,v.name as v_name,v.id as v_id") {
+    public function view($where = null, $select = "pu.*,m.name as m_name,m.id as m_id,p.name as p_name,p.id as p_id,py.name as py_name,py.id as py_id,l.name as l_name,l.id as l_id,ry.name as ry_name,ry.id as ry_id,d.name as d_name,d.id as d_id,v.name as v_name,v.id as v_id") {
         $this->db->trans_start();
         if (!is_null($where)) {
-            $this->db->where("id", $where);
+            $this->db->where("pu.id", $where);
         }
         $this->db->select($select);
-        $this->db->join("input_tag as m","m.tag_id='MATERIAL' AND m.module=1 AND m.id=material_id");
-        $this->db->join("input_tag as q","q.tag_id='QUARRYNAME' AND q.module=1 AND q.id=quarryname_id");
-        $this->db->join("input_tag as r","r.tag_id='RECEIVER' AND r.module=1 AND r.id=receiver_id");
-        $this->db->join("input_tag as d","d.tag_id='DRIVER' AND d.module=1 AND d.id=driver_id");
+        $this->db->join("input_tag as m","m.tag_id='MATERIAL' AND m.module=2 AND m.id=material_id");
+        $this->db->join("input_tag as ry","ry.tag_id='ROYALTY' AND ry.module=2 AND (ry.id=royalty_id OR royalty_id=0)");
+        $this->db->join("input_tag as d","d.tag_id='DRIVER' AND d.module=2 AND d.id=driver_id");
+        $this->db->join("input_tag as l","l.tag_id='LOADING' AND l.module=2 AND l.id=loading_id");
+        $this->db->join("input_tag as p","p.tag_id='PLACE' AND p.module=2 AND p.id=place_id");
+        $this->db->join("input_tag as py","py.tag_id='PARTY' AND py.module=2 AND py.id=party_id");
         $this->db->join("vehicle as v","v.id=vehicle_id");
         $this->db->order_by("pu.id", "asc");
         $query = $this->db->get('sales as pu');

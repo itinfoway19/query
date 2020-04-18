@@ -24,9 +24,7 @@
     $('.selectize').selectize({
         sortField: 'text'
     });
-    $(document).on("keyup", "input", function () {
-        $(this).val($(this).val().toUpperCase());
-    });
+    
 </script>
 <script>
     $.validate();

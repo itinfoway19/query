@@ -12,9 +12,10 @@ class Master extends Controller {
     }
 
     public function index($title, $module) {
-        $data["title"] = $title;
-            $data["module"] = $module;
-            $this->display("index", $data);
+        $data["tag_id"] = $title;
+        $data["module"] = $module;
+        $data["data"]=$this->input_tag_model->view($data);
+        $this->display("index", $data);
     }
 
     public function model($title, $module) {
@@ -25,12 +26,12 @@ class Master extends Controller {
                 return $this->output
                                 ->set_content_type('application/json')
                                 ->set_status_header(200) // Return status
-                                ->set_output(json_encode(["data"=>TRUE]));
+                                ->set_output(json_encode(["data" => TRUE]));
             } else {
                 return $this->output
                                 ->set_content_type('application/json')
                                 ->set_status_header(200) // Return status
-                                ->set_output(json_encode(["data"=>FALSE]));
+                                ->set_output(json_encode(["data" => FALSE]));
             }
         } else {
             $data["title"] = $title;
