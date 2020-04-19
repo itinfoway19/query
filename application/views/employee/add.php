@@ -60,12 +60,12 @@ $formPhoto_id = array(
     'value' => isset($photo_id) ? $photo_id : "",
 );
 $formAddress = array(
-    'type' => 'text',
     'name' => 'address',
     'id' => 'address',
     'class' => 'form-control',
     "placeholder" => "Enter Address",
     'value' => isset($address) ? $address : "",
+    "rows" => 3
 );
 $formAddress_proof = array(
     'type' => 'text',
@@ -211,7 +211,7 @@ $formBank_acc_ifsc_code = array(
     "placeholder" => "Enter code",
     'value' => isset($bank_ifsc_code) ? $bank_ifsc_code : "",
 );
-$formBank_branch_name  = array(
+$formBank_branch_name = array(
     'type' => 'text',
     'name' => 'bank_branch',
     'id' => 'bank_branch',
@@ -219,7 +219,7 @@ $formBank_branch_name  = array(
     "placeholder" => "Enter Branch name",
     'value' => isset($bank_branch) ? $bank_branch : "",
 );
-$formBank_proof  = array(
+$formBank_proof = array(
     'type' => 'text',
     'name' => 'bank_proof',
     'id' => 'bank_proof',
@@ -227,7 +227,7 @@ $formBank_proof  = array(
     "placeholder" => "Enter Bank Proof No",
     'value' => isset($bank_proof) ? $bank_proof : "",
 );
-$formCourt_case_pending  = array(
+$formCourt_case_pending = array(
     'type' => 'text',
     'name' => 'court_case_pending',
     'id' => 'court_case_pending',
@@ -262,277 +262,312 @@ $formCourt_note = array(
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="row justify-content-between">
-                        <div class="col-md-12">
-                           <h2>Personal Detail</h2>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <?= form_input($formName); ?>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Birth Date</label>
-                                <?= form_input($formDate); ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Gender</label></br>
-                                <label >  <input id="gender" name="gender" type="radio" class="" value="1"<?php if(isset($gender) && $gender=='1'){ echo "checked='checked'";}else{echo "checked='checked'";} ?>  />Male</label>                
-                       <label > <input id="gender" name="gender" type="radio" value="2" <?php if(isset($gender) && $gender=='2') echo "checked='checked'"; ?>  />Female</label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Mobile Number</label>
-                                <?= form_input($formMobile_no); ?>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Mobile Number1</label>
-                                <?= form_input($formAlternate_no); ?>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Designation</label>
-                                <?= form_input($formDesignation); ?>
-                            </div>
-                        </div>
-                    </div> <!--row over-->
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Image</label>
-                                <div class="input-group">
-                                     <div class="custom-file">
-                                       <?= form_upload("img", null, ['class' => 'custom-file-input',  "data-validation" => "mime size", "data-validation-allowing" => "jpg, png", "data-validation-max-size" => "500kb", "accept" => "image/x-png,image/jpg,image/jpeg", "id" => "upload"]); ?>
-                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                     </div>
+                            <h2>Personal Detail</h2>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <?= form_input($formName); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Birth Date</label>
+                                        <?= form_input($formDate); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Mobile Number</label>
+                                        <?= form_input($formMobile_no); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Mobile Number1</label>
+                                        <?= form_input($formAlternate_no); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Designation</label>
+                                        <?= form_input($formDesignation); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Address</label></br>
+                                        <?= form_textarea($formAddress); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Gender</label></br>
+                                        <label >  <input id="gender" name="gender" type="radio" class="" value="1"<?php
+                                            if (isset($gender) && $gender == '1') {
+                                                echo "checked='checked'";
+                                            } else {
+                                                echo "checked='checked'";
+                                            }
+                                            ?>  />Male</label>                
+                                        <label > <input id="gender" name="gender" type="radio" value="2" <?php if (isset($gender) && $gender == '2') echo "checked='checked'"; ?>  />Female</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Joing Date</label></br>
+                                        <?= form_input($formJoing_date); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Leaving Date </label>
+                                        <?= form_input($formLeaving_date); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Image</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <?= form_upload("img", null, ['class' => 'custom-file-input', "data-validation" => "mime size", "data-validation-allowing" => "jpg, png", "data-validation-max-size" => "500kb", "accept" => "image/x-png,image/jpg,image/jpeg", "id" => "upload"]); ?>
+                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Photo Id</label>
+                                        <?= form_input($formPhoto_id); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Address Proof</label>
+                                        <?= form_input($formAddress_proof); ?>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+
+
+                        <div class="row justify-content-between">
+                            <div class="col-md-12">
+                                <h2>Investment Detail</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Insurance</label></br>
+                                    <label >  <input id="insurance" name="insurance" type="radio" class="" value="1"<?php
+                                        if (isset($insurance) && $insurance == '1') {
+                                            echo "checked='checked'";
+                                        } else {
+                                            echo "checked='checked'";
+                                        }
+                                        ?>  />Yes</label>                
+                                    <label > <input id="insurance" name="insurance" type="radio" value="2" <?php if (isset($insurance) && $insurance == '2') echo "checked='checked'"; ?>  />No</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Insurance Name</label>
+                                    <?= form_input($formInsurance_name); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Issue Date</label>
+                                    <?= form_input($formIssue_date); ?>                                
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Valid Date</label>
+                                    <?= form_input($formValid); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Insurance policy copy</label>
+                                    <?= form_input($formInsurance_policy); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nominee</label></br>
+                                    <label >  <input id="nominee" name="nominee" type="radio" class="" value="1"<?php
+                                        if (isset($nominee) && $nominee == '1') {
+                                            echo "checked='checked'";
+                                        } else {
+                                            echo "checked='checked'";
+                                        }
+                                        ?>  />Yes</label>                
+                                    <label > <input id="nominee" name="nominee" type="radio" value="2" <?php if (isset($nominee) && $nominee == '2') echo "checked='checked'"; ?>  />No</label>                               
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nominee Name</label>
+                                    <?= form_input($formNominee_name); ?>                                
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Nominee Address</label>
+                                    <?= form_input($formNominee_add); ?>                                
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Nominee Mobile number</label>
+                                    <?= form_input($formNominee_con); ?>                                
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Nominee Brith Date</label>
+                                    <?= form_input($formNominee_date); ?>                                
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Nominee Photo ID</label>
+                                    <?= form_input($formNominee_Photo); ?>                                
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Nominee Address Proof</label>
+                                    <?= form_input($formNominee_add_proof); ?>                                
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Gender</label><br/>
+                                    <label >  <input id="nominee_gender" name="nominee_gender" type="radio" class="" value="1"<?php
+                                        if (isset($nominee_gender) && $nominee_gender == '1') {
+                                            echo "checked='checked'";
+                                        } else {
+                                            echo "checked='checked'";
+                                        }
+                                        ?>  />Male</label>                
+                                    <label > <input id="nominee_gender" name="nominee_gender" type="radio" value="2" <?php if (isset($nominee_gender) && $nominee_gender == '2') echo "checked='checked'"; ?>  />Female</label>                                
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Insurance Note</label>
+                                    <?= form_input($formInsurance_note); ?>                                                                 
+                                </div>
+                            </div>
+                        </div><!--row over-->
+
+
+                        <div class="row justify-content-between">
+                            <div class="col-md-12">
+                                <h2>Bank Detail</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Bank Accoun</label></br>
+                                    <label >  <input id="bank_details" name="bank_details" type="radio" class="" value="1"<?php
+                                        if (isset($bank_details) && $bank_details == '1') {
+                                            echo "checked='checked'";
+                                        } else {
+                                            echo "checked='checked'";
+                                        }
+                                        ?>  />Yes</label>                
+                                    <label > <input id="bank_details" name="bank_details" type="radio" value="2" <?php if (isset($bank_details) && $bank_details == '2') echo "checked='checked'"; ?>  />No</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Bank Name</label>
+                                    <?= form_input($formBank_name); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Account Number</label>
+                                    <?= form_input($formBank_acc_no); ?>                                
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Account Holder Name</label>
+                                    <?= form_input($formBank_acc_hol_name); ?>                                
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Ifsc Code</label>
+                                    <?= form_input($formBank_acc_ifsc_code); ?>                                
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Branch Name</label>
+                                    <?= form_input($formBank_branch_name); ?>                                
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Bank Proof</label>
+                                    <?= form_input($formBank_proof); ?>                                
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Court Case</label></br>
+                                    <label >  <input id="court_case" name="court_case" type="radio" class="" value="1"<?php
+                                        if (isset($court_case) && $court_case == '1') {
+                                            echo "checked='checked'";
+                                        } else {
+                                            echo "checked='checked'";
+                                        }
+                                        ?>  />Yes</label>                
+                                    <label > <input id="court_case" name="court_case" type="radio" value="2" <?php if (isset($court_case) && $court_case == '2') echo "checked='checked'"; ?>  />No</label>                                
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Court Case Pending</label>
+                                    <?= form_input($formCourt_case_pending); ?>                                
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Note</label>
+                                    <?= form_input($formCourt_note); ?>                                
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label> User id</label>
+                                    <?= form_dropdown("user_id", $user, isset($data->user_id) ? $data->user_id : null, ["class" => "select2", "style" => "width: 100%;", "data-placeholder" => $this->lang->line("blog_cat_plac")]); ?>                                
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Photo Id</label>
-                                <?= form_input($formPhoto_id); ?>
-                            </div>
+
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
-                    
-                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Address</label></br>
-                                 <?= form_input($formAddress); ?>
-                            </div>
-                        </div>
-                        
-                     </div>
-                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Address Proof</label>
-                                <?= form_input($formAddress_proof); ?>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Joing Date</label></br>
-                                 <?= form_input($formJoing_date); ?>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Leaving Date </label>
-                                <?= form_input($formLeaving_date); ?>
-                            </div>
-                        </div>
-                     </div>
-                    <div class="row justify-content-between">
-                        <div class="col-md-12">
-                           <h2>Investment Detail</h2>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Insurance</label></br>
-                                <label >  <input id="insurance" name="insurance" type="radio" class="" value="1"<?php if(isset($insurance) && $insurance=='1'){ echo "checked='checked'";}else{echo "checked='checked'";} ?>  />Yes</label>                
-                       <label > <input id="insurance" name="insurance" type="radio" value="2" <?php if(isset($insurance) && $insurance=='2') echo "checked='checked'"; ?>  />No</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Insurance Name</label>
-                                <?= form_input($formInsurance_name); ?>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Issue Date</label>
-                                <?= form_input($formIssue_date); ?>                                
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Valid Date</label>
-                                <?= form_input($formValid); ?>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Insurance policy copy</label>
-                                <?= form_input($formInsurance_policy); ?>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Nominee</label></br>
-                                <label >  <input id="nominee" name="nominee" type="radio" class="" value="1"<?php if(isset($nominee) && $nominee=='1'){ echo "checked='checked'";}else{echo "checked='checked'";} ?>  />Yes</label>                
-                       <label > <input id="nominee" name="nominee" type="radio" value="2" <?php if(isset($nominee) && $nominee=='2') echo "checked='checked'"; ?>  />No</label>                               
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Nominee Name</label>
-                                <?= form_input($formNominee_name); ?>                                
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Nominee Address</label>
-                                <?= form_input($formNominee_add); ?>                                
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Nominee Mobile number</label>
-                                <?= form_input($formNominee_con); ?>                                
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Nominee Brith Date</label>
-                                <?= form_input($formNominee_date); ?>                                
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Nominee Photo ID</label>
-                                <?= form_input($formNominee_Photo); ?>                                
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Nominee Address Proof</label>
-                                <?= form_input($formNominee_add_proof); ?>                                
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Gender</label><br/>
-                                <label >  <input id="nominee_gender" name="nominee_gender" type="radio" class="" value="1"<?php if(isset($nominee_gender) && $nominee_gender=='1'){ echo "checked='checked'";}else{echo "checked='checked'";} ?>  />Male</label>                
-                                <label > <input id="nominee_gender" name="nominee_gender" type="radio" value="2" <?php if(isset($nominee_gender) && $nominee_gender=='2') echo "checked='checked'"; ?>  />Female</label>                                
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Insurance Note</label>
-                                 <?= form_input($formInsurance_note); ?>                                                                 
-                            </div>
-                        </div>
-                    </div><!--row over-->
-
-
-                    <div class="row justify-content-between">
-                        <div class="col-md-12">
-                           <h2>Bank Detail</h2>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Bank Accoun</label></br>
-                                <label >  <input id="bank_details" name="bank_details" type="radio" class="" value="1"<?php if(isset($bank_details) && $bank_details=='1'){ echo "checked='checked'";}else{echo "checked='checked'";} ?>  />Yes</label>                
-                       <label > <input id="bank_details" name="bank_details" type="radio" value="2" <?php if(isset($bank_details) && $bank_details=='2') echo "checked='checked'"; ?>  />No</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Bank Name</label>
-                                <?= form_input($formBank_name); ?>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Account Number</label>
-                                <?= form_input($formBank_acc_no); ?>                                
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Account Holder Name</label>
-                                <?= form_input($formBank_acc_hol_name); ?>                                
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Ifsc Code</label>
-                                <?= form_input($formBank_acc_ifsc_code); ?>                                
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Branch Name</label>
-                                <?= form_input($formBank_branch_name); ?>                                
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Bank Proof</label>
-                                <?= form_input($formBank_proof); ?>                                
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Court Case</label></br>
-                                <label >  <input id="court_case" name="court_case" type="radio" class="" value="1"<?php if(isset($court_case) && $court_case=='1'){ echo "checked='checked'";}else{echo "checked='checked'";} ?>  />Yes</label>                
-                       <label > <input id="court_case" name="court_case" type="radio" value="2" <?php if(isset($court_case) && $court_case=='2') echo "checked='checked'"; ?>  />No</label>                                
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Court Case Pending</label>
-                                <?= form_input($formCourt_case_pending); ?>                                
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Note</label>
-                                <?= form_input($formCourt_note); ?>                                
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label> User id</label>
-                                <?= form_dropdown("user_id", $user, isset($data->user_id) ?$data->user_id : null, ["class" => "select2",  "style" => "width: 100%;", "data-placeholder" => $this->lang->line("blog_cat_plac")]); ?>                                
-                            </div>
-                        </div>
+                    <!-- /.card-footer-->
+                    <?= form_close(); ?>
                 </div>
-           </div>
-
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-                <!-- /.card-footer-->
-                <?= form_close(); ?>
+                <!-- /.card -->
             </div>
-            <!-- /.card -->
         </div>
     </div>
-</div>
-<div class="antique-details-container"></div>
+    <div class="antique-details-container"></div>
