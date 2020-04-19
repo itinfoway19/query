@@ -19,7 +19,7 @@ $formMobile_no = array(
     'type' => 'text',
     'name' => 'mobile_number',
     'data-validation' => "number",
-    "data-validation-allowing" => "range[99999999999;99999]",
+    "data-validation-allowing" => "range[9999999999]",
     'id' => 'mobile_number',
     'class' => 'form-control',
     "placeholder" => "Enter mobile number",
@@ -29,7 +29,7 @@ $formAlternate_no = array(
     'type' => 'text',
     'name' => 'alternate_number',
     'data-validation' => "number",
-    "data-validation-allowing" => "range[99999999999;99999]",
+    "data-validation-allowing" => "range[9999999999]",
     "id" => 'alternate_number',
     'class' => 'form-control',
     "placeholder" => "Enter mobile number",
@@ -455,7 +455,7 @@ $formCourt_note = array(
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Bank A/c</label></br>
+                                <label>Bank Accoun</label></br>
                                 <label >  <input id="bank_details" name="bank_details" type="radio" class="" value="1"<?php if(isset($bank_details) && $bank_details=='1'){ echo "checked='checked'";}else{echo "checked='checked'";} ?>  />Yes</label>                
                        <label > <input id="bank_details" name="bank_details" type="radio" value="2" <?php if(isset($bank_details) && $bank_details=='2') echo "checked='checked'"; ?>  />No</label>
                             </div>
@@ -536,98 +536,3 @@ $formCourt_note = array(
     </div>
 </div>
 <div class="antique-details-container"></div>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
-<script>
-    $.validate({
-        modules: 'security,file',
-    });
-</script>
-
-<script>
-     
-
-    
-    var Demo = (function() {
-        function demoUpload() {
-            var $uploadCrop;
-
-            function popupResult(result) {
-                var html;
-                if (result.html) {
-                    html = result.html;
-                }
-                if (result.src) {
-                    console.log(result.src);
-                    $("#input_image").val(result.src);
-                }
-
-                setTimeout(function() {
-                    $('.sweet-alert').css('margin', function() {
-                        var top = -1 * ($(this).height() / 2),
-                            left = -1 * ($(this).width() / 2);
-                        return top + 'px 0 0 ' + left + 'px';
-                    });
-                }, 1);
-                $('form').submit();
-            }
-
-            function readFile(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        $('.upload-demo').addClass('ready');
-                        $uploadCrop.croppie('bind', {
-                            url: e.target.result,
-                        }).then(function() {});
-
-                    };
-
-                    reader.readAsDataURL(input.files[0]);
-
-                } else {
-                    swal("Sorry - you're browser doesn't support the FileReader API");
-                }
-            }
-
-            $uploadCrop = $('#upload-demo').croppie({
-                viewport: {
-                    width: 100,
-                    height: 100,
-                    type: 'square'
-                },
-                boundary: {
-                    width: 110,
-                    height: 110
-                },
-                enableOrientation: true,
-                enableExif: true,
-                enforceBoundary: false
-            });
-            <?= isset($data->img) ? "\$uploadCrop.croppie('bind', '" . base_url("assert/image/" . $data->img) . "');" : "\$uploadCrop.croppie('bind', '" . base_url("assert/blog/user_demo.png") . "');"; ?>
-            $('#upload').on('change', function() {
-                readFile(this);
-
-            });
-            $('.upload-result').on('click', function(ev) {
-                $uploadCrop.croppie('result', {
-                    type: 'canvas',
-                    size: 'viewport'
-                }).then(function(resp) {
-                    popupResult({
-                        src: resp
-                    });
-                });
-            });
-        }
-
-        function init() {
-            demoUpload();
-        }
-
-        return {
-            init: init
-        };
-    })();
-    Demo.init();
-</script>

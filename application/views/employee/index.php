@@ -49,26 +49,100 @@
                                            Designation 
                                         </th>                                                                                </th>
                                         <th>
-                                            Net Weight
+                                           Image
                                         </th>
                                         <th class="filter-select filter-onlyAvail">
-                                            Material
+                                            Photo Id
                                         </th>
                                         <th class="filter-select filter-onlyAvail">
-                                            Quarry Name
+                                            Address
                                         </th>
                                         <th class="filter-select filter-onlyAvail">
-                                            Receiver Name
+                                            Address Proof
                                         </th>
                                         <th class="filter-select filter-onlyAvail">
-                                            Driver Name
+                                            Joing Date
                                         </th>
                                         <th class="filter-select filter-onlyAvail">
-                                            Carting
+                                            Leaving Date
                                         </th>
-                                        <th>
-                                            Note
+                                        <th class="filter-select filter-onlyAvail">
+                                            Insurance 
                                         </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Insurance  Company Name
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Issue Date
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Valid Date
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Insurance policy copy 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Nominee 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Nominee Name 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Nominee Address 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Nominee Contact Number 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                           Nominee Brith Date
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Nominee Photo ID 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Nominee Address Proof 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Gender 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Insurance Note 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                           Bank Account
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Bank Name 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Account Number 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Account Holder Name 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Ifsc Code 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            Branch Name
+                                        </th>
+
+                                        <th class="filter-select filter-onlyAvail">
+                                           Bank Proof
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                           Court Case 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                           Court Case Pending 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                           Note 
+                                        </th>
+                                        <th class="filter-select filter-onlyAvail">
+                                            User id
+                                        </th>
+                                            
                                         <th class="filter-false">
                                             Action
                                         </th>
@@ -100,41 +174,56 @@
                                 </tfoot>
                                 <tbody>
                                     <?php
-                                    $sum = 0;
-                                    foreach ($employee as $e) {
-                                        $sum += $e->net_weight;
+                                   foreach ($employee as $e) {
+                                       
                                     ?>
                                         <tr>
                                             <td><?= $e->name; ?></td>
-                                            <td><?= $e->id; ?></td>
-                                            <td><?= $e->v_name; ?></td>
-                                            <td><?= $e->transeorter_name; ?></td>
-                                            <td><?= $e->gross_weight; ?></td>
-                                            <td><?= $e->tare_weight; ?></td>
-                                            <td><?= $e->net_weight; ?></td>
-                                            <td><?= $e->m_name; ?></td>
-                                            <td><?= $e->q_name; ?></td>
-                                            <td><?= $e->r_name; ?></td>
-                                            <td><?= $e->d_name; ?></td>
-                                            <td><?= ($e->carting_id == 1) ? "SELF" : "CARTING"; ?></td>
+                                            <td><?= $e->dob; ?></td>
+                                            <td><?= ($e->gender == 1) ? "Male" : "Female"; ?></td>
+                                            <td><?= $e->mobile_number; ?></td>
+                                            <td><?= $e->alternate_number; ?></td>
+                                            <td><?= $e->designation; ?></td>
+                                            <td><?= $e->img; ?></td>
+                                            <td><?= $e->photo_id; ?></td>
+                                            <td><?= $e->address; ?></td>
+                                            <td><?= $e->address_proof; ?></td>
+                                            <td><?= $e->joining_date; ?></td>
+                                           <td><?= $e->leaving_date; ?></td>
+                                            <td><?= ($e->insurance == 1) ? "Yes" : "No"; ?></td>
+                                            <td><?= $e->insurance_company_name; ?></td>
+                                             <td><?= $e->issue_date; ?></td>
+                                            <td><?= $e->valid_upto; ?></td>
+                                            <td><?= $e->insurance_policy_copy; ?></td>
+                                            <td><?= $e->nominee; ?></td>
+                                            <td><?= $e->nominee_name; ?></td>
+                                            <td><?= $e->nominee_address; ?></td>
+                                            <td><?= $e->nominee_contact_number; ?></td>
+                                            <td><?= $e->nominee_dob; ?></td>
+                                            <td><?= $e->nominee_photo_id; ?></td>
+                                            <td><?= $e->nominee_address_proof; ?></td>
+                                            <td><?= ($e->nominee_gender == 1) ? "Male" : "Female"; ?></td>
+                                            <td><?= $e->insurance_note; ?></td><td><?= ($e->insurance == 1) ? "Yes" : "No"; ?></td>
+                                            <td><?= ($e->bank_details == 1) ? "Yes" : "No"; ?></td>
+                                            <td><?= $e->bank_account_number; ?></td>
+                                            <td><?= $e->bank_account_name; ?></td>
+                                            <td><?= $e->bank_ifsc_code; ?></td>
+                                            <td><?= $e->bank_branch; ?></td>
+                                            <td><?= $e->bank_proof; ?></td>
+                                            <td><?= ($e->court_case == 1) ? "Yes" : "No"; ?></td>
+                                            <td><?= $e->court_case_pending; ?></td>
                                             <td><?= $e->note; ?></td>
-                                            <td>
-                                                <a class="btn btn-success btn-sm ">edit</a>
-                                                <a class="btn btn-danger btn-sm ">Delete</a>
+                                            <td><?= $e->user_id; ?></td>
+                                           <td>
+                                                <a class="btn btn-success btn-sm " href="<?= base_url("employee/edit/") ?>">edit</a>
+                                                <a class="btn btn-danger btn-sm "  href="<?= base_url("employee/delete/") ?>">Delete</a>
                                             </td>
                                         </tr>
                                     <?php
                                     }
                                     ?>
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="6" align="right">Total</td>
-                                        <td><?= $sum; ?></td>
-                                        <td colspan="7"></td>
-                                    </tr>
-                                </tfoot>
-
+                               
                             </table>
                         </div>
                     </div>

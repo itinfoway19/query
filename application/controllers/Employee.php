@@ -12,7 +12,8 @@ class Employee extends Controller {
     }
 
     public function index() {
-        $data["data"] = $this->employee_model->view();
+
+        $data["employee"] = $this->employee_model->view();
         $this->display('index', $data);
     }
 
@@ -54,6 +55,24 @@ class Employee extends Controller {
 
     public function edit($id = null) {
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
+              $data = array();
+         $data["data"]=new stdClass;
+         $data["data"]->user_id=$id;
+         if (isset($_FILES['img']['name']) && !empty($_FILES['img']['name'])) {
+                $image_parts = explode(";base64,", $this->input->post("input_image"));
+                $image_type_aux = explode("image/", $image_parts[0]);
+                $image_type = $image_type_aux[1];
+                $image_base64 = base64_decode($image_parts[1]);
+                $file = uniqid() . '.png';
+                file_put_contents("./assert/image/" . $file, $image_base64);
+                $array =  $this->input->post();
+                unset($array["input_image"]);
+                $array["img"] = $file;
+            } else {
+                $array = $this->input->post();
+                unset($array["input_image"]);
+                $array["img"] = "user_demo.png";
+            }
             $capArray = array_map('strtoupper', $this->input->post());
             $data = $this->employee_model->edit($capArray, $id);
             if (!empty($data)) {
@@ -64,7 +83,12 @@ class Employee extends Controller {
         } else {
             $data = $this->employee_model->view($id);
         }
-        $this->display("add", $data[0]);
+         $user = $this->users_model->view();
+        foreach ($user as $u) {
+            $data["user"][$u->id] = $u->username;
+        }
+        $this->display("add",$data[0], $data);
+        
     }
 
     public function model() {
