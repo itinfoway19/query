@@ -42,22 +42,22 @@
                                         <th class="filter-select filter-onlyAvail">
                                             Mobile Number
                                         </th>
-                                        <th>
+                                        <th class="filter-select filter-onlyAvail">
                                             Mobile Number 1
                                         </th>
-                                        <th>
+                                        <th class="filter-select filter-onlyAvail">
                                            Designation 
                                         </th>                                                                                </th>
-                                        <th>
+                                        <th class="filter-false">
                                            Image
                                         </th>
-                                        <th class="filter-select filter-onlyAvail">
+                                        <th class="filter-false">
                                             Photo Id
                                         </th>
                                         <th class="filter-select filter-onlyAvail">
                                             Address
                                         </th>
-                                        <th class="filter-select filter-onlyAvail">
+                                        <th class="filter-false">
                                             Address Proof
                                         </th>
                                         <th class="filter-select filter-onlyAvail">
@@ -78,7 +78,7 @@
                                         <th class="filter-select filter-onlyAvail">
                                             Valid Date
                                         </th>
-                                        <th class="filter-select filter-onlyAvail">
+                                        <th class="filter-false">
                                             Insurance policy copy 
                                         </th>
                                         <th class="filter-select filter-onlyAvail">
@@ -96,10 +96,10 @@
                                         <th class="filter-select filter-onlyAvail">
                                            Nominee Brith Date
                                         </th>
-                                        <th class="filter-select filter-onlyAvail">
+                                        <th class="filter-false">
                                             Nominee Photo ID 
                                         </th>
-                                        <th class="filter-select filter-onlyAvail">
+                                        <th class="filter-false">
                                             Nominee Address Proof 
                                         </th>
                                         <th class="filter-select filter-onlyAvail">
@@ -127,7 +127,7 @@
                                             Branch Name
                                         </th>
 
-                                        <th class="filter-select filter-onlyAvail">
+                                        <th class="filter-false">
                                            Bank Proof
                                         </th>
                                         <th class="filter-select filter-onlyAvail">
@@ -150,7 +150,7 @@
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="14" class="ts-pager">
+                                        <th colspan="38" class="ts-pager">
                                             <div class="form-inline">
                                                 <div class="btn-group btn-group-sm mx-1" role="group">
                                                     <button type="button" class="btn btn-secondary first" title="first">⇤</button>
@@ -184,24 +184,32 @@
                                             <td><?= $e->mobile_number; ?></td>
                                             <td><?= $e->alternate_number; ?></td>
                                             <td><?= $e->designation; ?></td>
-                                            <td><?= $e->img; ?></td>
-                                            <td><?= $e->photo_id; ?></td>
+                                            <td><?=!empty($e->img)?'<a href="'.  base_url("assert/image/".$e->img).'" target="_blank" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>':""; ?></td>
+                                            <td><?=!empty($e->photo_id)?'<a href="'.  base_url("assert/image/".$e->photo_id).'" target="_blank" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>':""; ?></td>
                                             <td><?= $e->address; ?></td>
-                                            <td><?= $e->address_proof; ?></td>
+                                            <td>
+                                            <?=!empty($e->address_proof)?'<a href="'.  base_url("assert/image/".$e->address_proof).'" target="_blank" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>':""; ?>
+                                            </td>
                                             <td><?= $e->joining_date; ?></td>
                                            <td><?= $e->leaving_date; ?></td>
                                             <td><?= ($e->insurance == 1) ? "Yes" : "No"; ?></td>
                                             <td><?= $e->insurance_company_name; ?></td>
                                              <td><?= $e->issue_date; ?></td>
                                             <td><?= $e->valid_upto; ?></td>
-                                            <td><?= $e->insurance_policy_copy; ?></td>
+                                            <td>
+                                            <?=!empty($e->insurance_policy_copy)?'<a href="'.  base_url("assert/image/".$e->insurance_policy_copy).'" target="_blank" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>':""; ?>
+                                            </td>
                                             <td><?= $e->nominee; ?></td>
                                             <td><?= $e->nominee_name; ?></td>
                                             <td><?= $e->nominee_address; ?></td>
                                             <td><?= $e->nominee_contact_number; ?></td>
                                             <td><?= $e->nominee_dob; ?></td>
-                                            <td><?= $e->nominee_photo_id; ?></td>
-                                            <td><?= $e->nominee_address_proof; ?></td>
+                                            <td>
+                                            <?=!empty($e->nominee_photo_id)?'<a href="'.  base_url("assert/image/".$e->nominee_photo_id).'" target="_blank" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>':""; ?>
+                                            </td>
+                                            <td>
+                                            <?=!empty($e->nominee_address_proof)?'<a href="'.  base_url("assert/image/".$e->nominee_address_proof).'" target="_blank" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>':""; ?>
+                                            </td>
                                             <td><?= ($e->nominee_gender == 1) ? "Male" : "Female"; ?></td>
                                             <td><?= $e->insurance_note; ?></td><td><?= ($e->insurance == 1) ? "Yes" : "No"; ?></td>
                                             <td><?= ($e->bank_details == 1) ? "Yes" : "No"; ?></td>
@@ -209,7 +217,9 @@
                                             <td><?= $e->bank_account_name; ?></td>
                                             <td><?= $e->bank_ifsc_code; ?></td>
                                             <td><?= $e->bank_branch; ?></td>
-                                            <td><?= $e->bank_proof; ?></td>
+                                            <td>
+                                            <?=!empty($e->bank_proof)?'<a href="'.  base_url("assert/image/".$e->bank_proof).'" target="_blank" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>':""; ?>
+                                            </td>
                                             <td><?= ($e->court_case == 1) ? "Yes" : "No"; ?></td>
                                             <td><?= $e->court_case_pending; ?></td>
                                             <td><?= $e->note; ?></td>
