@@ -225,8 +225,8 @@
                                             <td><?= $e->note; ?></td>
                                             <td><?= $e->user_id; ?></td>
                                            <td>
-                                                <a class="btn btn-success btn-sm " href="<?= base_url("employee/edit/") ?>">edit</a>
-                                                <a class="btn btn-danger btn-sm "  href="<?= base_url("employee/delete/") ?>">Delete</a>
+                                                <a class="btn btn-success btn-sm " href="<?= base_url("employee/edit/".$e->id) ?>">edit</a>
+                                                <!--<a class="btn btn-danger btn-sm "  href="<?= base_url("employee/delete/") ?>">Delete</a>-->
                                             </td>
                                         </tr>
                                     <?php
