@@ -12,6 +12,8 @@
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <!-- overlayScrollbars -->
+        <link rel="stylesheet" href="<?= base_url(); ?>assert/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+        <link rel="stylesheet" href="<?= base_url(); ?>assert/plugins/toastr/toastr.min.css">
         <link rel="stylesheet" href="<?= base_url(); ?>assert/dist/css/adminlte.min.css">
         <link rel="stylesheet" href="<?= base_url(); ?>assert/plugins/selectize/css/selectize.bootstrap3.css">
         <link rel="stylesheet" href="<?= base_url(); ?>assert/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
@@ -44,7 +46,7 @@
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="<?=base_url("login/logout")?>">
+                        <a class="nav-link" href="<?= base_url("login/logout") ?>">
                             <i class="fas fa-power-off"></i>
                         </a>
                     </li>

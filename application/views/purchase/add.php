@@ -76,10 +76,11 @@ $formNote = array(
                     <h3 class="card-title">ADD</h3>
 
                     <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                            <i class="fas fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-                            <i class="fas fa-times"></i></button>
+                        <ul class="nav nav-pills ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="<?=base_url("purchase")?>">View</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="card-body">
@@ -391,7 +392,7 @@ $formNote = array(
     });
 
     $(document).on("change", "#ids", function (e) {
-             
+
     });
     $(document).on("submit", "#saveInput_tag", function (e) {
         e.preventDefault();

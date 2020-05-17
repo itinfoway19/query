@@ -1,337 +1,114 @@
+<style>
+    table{
+        border: 1px solid #000; 
+    }
+    .bottom-b{
+        border-bottom: 1px solid #000;
+    }
+    .right-b{
+        border-right:1px solid #000;    
+    }
+    .cuting{
+        color:#e2e2e2;
+    }
+    .text-right{
+        text-align: right;
+    }
+</style>
 
-<html>
-    <head>
-        <style>
-            table,table th,table td{
-                border: 1px solid black;
-                border-collapse: collapse;
-                padding: 5px;
-            }
-            table table,table table th,table table td{
-                border: 0px solid black;
-            }
-            th, td {
-                padding: 5px;
-            }
-        </style>
-    </head>
-    <body>
-        <table style="width:100%; height:300px" border="1">
+<?php
+for ($i = 0; $i < 3; $i++) {
+    ?>
+    <table width="100%" cellpadding="6">
+        <thead>
             <tr align="center">
-                <td colspan = "3"><b>Krishna Minerals</b></td>         
+                <td colspan = "4" class="bottom-b"><b>Krishna Minerals</b></td>         
             </tr>
-            <tr>
-                <td>
-                    <b>Party Name :</b> AASHOPALAV DEVLOPARS
-                </td>
-                <td align="right">
-                    <b>Date :</b> 25-02-2020 13:38:03 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b>Challan Number :</b> S_30056  
-                </td>
-                <td align="right">
-                    <table width="100%">
-                        <tbody>
-                            <tr>
-                                <th  align="left" width="10%">
-                                     Metrial   <th>:</th>
-                                </th>
-                                <td>
-                                   10MM      
-                                </td>
-                                <th align="right" width="55%">
-                                    Place   <th>:</th> 
-                                </th>
-                                <td>
-                                   KUVADAVA        
-                                </td>
-                            
+        </thead>
+        <tr>
+            <td colspan="2" class="bottom-b right-b">
+                <b>Challan Number :</b> s_<?= $sales[0]->id; ?>  
+            </td>
 
-                        </tbody>
-                    </table>
-                   
-                </td>
-            </tr>
-            <tr>
-                <td >
-                    <table width="100%">
+            <td align="right" colspan="2" class="bottom-b">
+                <b>Date :</b> <?= $sales[0]->date; ?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" class="bottom-b">
+                <b>Party Name :</b> <?= $sales[0]->py_name; ?>
+            </td> 
+        </tr>
+        <tr>
+            <td rowspan="2" class="bottom-b">
+                Royalty Name
+            </td>
+            <td rowspan="2"class="bottom-b right-b">:
+                <?= $sales[0]->ry_name ?>
+            </td>
+            <td class="bottom-b">
+                Vehicle Number
+            </td>
+            <td class="bottom-b">:
+                <?= $sales[0]->v_name ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="bottom-b">
+                Gross Weight
+            </td>
+            <td class="bottom-b">:
+                <?= $sales[0]->gross_weight ?>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2" class="bottom-b ">
+                Royalty Number
+            </td>
+            <td rowspan="2"class="bottom-b right-b">:
+                <?= $sales[0]->royalty_number ?>
+            </td>
+            <td class="bottom-b">
+                Tare Weight
+            </td>
+            <td class="bottom-b">:
+                <?= $sales[0]->tare_weight ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="bottom-b">
+                Net Weight
+            </td>
+            <td class="bottom-b">:
+                <?= $sales[0]->net_weight ?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="bottom-b">
+                <b>Place :</b> <?= $sales[0]->p_name ?>
+            </td>
+            <td colspan="2" class="bottom-b">
+                <b>Material :</b> <?= $sales[0]->m_name ?>
+            </td>
+        </tr>
+    </table>
+    <?php
+    if ($i == 1) {
+        ?>
+        <div class="text-right"><br/>
+            <b>Signature :____________________</b>
+        </div>
+        <?php
+    } else {
+        echo "<br/>";
+    }
+    if ($i < 2) {
+        ?>
 
-                        <tbody>
-                            <tr>
-                                <th  align="left" width="35%">
-                                    Royalty Name  <th width="5%">:</th>
-                                </th>
-                                <td>
-                                    NO      
-                                </td>
+        <div class="cuting">--------------------------------------------------------------------------------------------------------------------------------------</div>
+        <br/>
+        <?php
+    }
+}
+?>
 
-                            <tr>
-                                <th align="left">
-                                    Royalty Number  <th>:</th> 
-                                </th>
-                                <td>
-                                    NO             
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-
-                </td>
-                <td>
-                    <table width="100%">
-                        <tbody><tr>
-                                <th  align="left" width="45%">
-                                    Vehicle Number  <th>:</th>
-                                </th>
-                                <td>
-                                    GJ 03 AW 1008                            </td>
-                            </tr>
-                            <tr>
-                                <th align="left" width="25%">
-                                    Gross Weight  <th>:</th>
-                                </th>
-                                <td>
-                                    125463                            </td>
-                            </tr>
-                            <tr>
-                                <th  align="left" width="25%" >
-                                    Tare Weight  <th>:</th>
-                                </th>
-                                <td>
-                                    10700                            </td>
-                            </tr>
-
-                            <tr>
-                                <th align="left" width="25%">
-                                    Net Weight  <th>:</th>
-
-                                </th>
-                                <td>
-                                    114763                            </td>
-                            </tr>
-                           
-                        </tbody></table>
-                </td>
-            </tr>
-        </table>
-
-        </br>
-        <table style="width:100%; height:300px" border="1">
-            <tr align="center">
-                <td colspan = "3"><b>Krishna Minerals</b></td>         
-            </tr>
-            <tr>
-                <td>
-                    <b>Party Name :</b> AASHOPALAV DEVLOPARS
-                </td>
-                <td align="right">
-                    <b>Date :</b> 25-02-2020 13:38:03 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b>Challan Number :</b> S_30056  
-                </td>
-                <td align="right">
-                    <table width="100%">
-                        <tbody>
-                            <tr>
-                                <th  align="left" width="10%">
-                                     Metrial   <th>:</th>
-                                </th>
-                                <td>
-                                   10MM      
-                                </td>
-                                <th align="right" width="55%">
-                                    Place   <th>:</th> 
-                                </th>
-                                <td>
-                                   KUVADAVA        
-                                </td>
-                            
-
-                        </tbody>
-                    </table>
-                   
-                </td>
-            </tr>
-            <tr>
-                <td >
-                    <table width="100%">
-
-                        <tbody>
-                            <tr>
-                                <th  align="left" width="35%">
-                                    Royalty Name  <th width="5%">:</th>
-                                </th>
-                                <td>
-                                    NO      
-                                </td>
-
-                            <tr>
-                                <th align="left">
-                                    Royalty Number  <th>:</th> 
-                                </th>
-                                <td>
-                                    NO             
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-
-                </td>
-                <td>
-                    <table width="100%">
-                        <tbody><tr>
-                                <th  align="left" width="45%">
-                                    Vehicle Number  <th>:</th>
-                                </th>
-                                <td>
-                                    GJ 03 AW 1008                            </td>
-                            </tr>
-                            <tr>
-                                <th align="left" width="25%">
-                                    Gross Weight  <th>:</th>
-                                </th>
-                                <td>
-                                    125463                            </td>
-                            </tr>
-                            <tr>
-                                <th  align="left" width="25%" >
-                                    Tare Weight  <th>:</th>
-                                </th>
-                                <td>
-                                    10700                            </td>
-                            </tr>
-
-                            <tr>
-                                <th align="left" width="25%">
-                                    Net Weight  <th>:</th>
-
-                                </th>
-                                <td>
-                                    114763                            </td>
-                            </tr>
-                           
-                        </tbody></table>
-                </td>
-            </tr>
-            <tr >
-                <td colspan = "3">
-                    Sign:      _________________
-                </td>
-            </tr>
-        </table>
-
-        </br>
-        <table style="width:100%; height:300px" border="1">
-            <tr align="center">
-                <td colspan = "3"><b>Krishna Minerals</b></td>         
-            </tr>
-            <tr>
-                <td>
-                    <b>Party Name :</b> AASHOPALAV DEVLOPARS
-                </td>
-                <td align="right">
-                    <b>Date :</b> 25-02-2020 13:38:03 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b>Challan Number :</b> S_30056  
-                </td>
-                <td align="right">
-                    <table width="100%">
-                        <tbody>
-                            <tr>
-                                <th  align="left" width="10%">
-                                     Metrial   <th>:</th>
-                                </th>
-                                <td>
-                                   10MM      
-                                </td>
-                                <th align="right" width="55%">
-                                    Place   <th>:</th> 
-                                </th>
-                                <td>
-                                   KUVADAVA        
-                                </td>
-                            
-
-                        </tbody>
-                    </table>
-                   
-                </td>
-            </tr>
-            <tr>
-                <td >
-                    <table width="100%">
-
-                        <tbody>
-                            <tr>
-                                <th  align="left" width="35%">
-                                    Royalty Name  <th width="5%">:</th>
-                                </th>
-                                <td>
-                                    NO      
-                                </td>
-
-                            <tr>
-                                <th align="left">
-                                    Royalty Number  <th>:</th> 
-                                </th>
-                                <td>
-                                    NO             
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-
-                </td>
-                <td>
-                    <table width="100%">
-                        <tbody><tr>
-                                <th  align="left" width="45%">
-                                    Vehicle Number  <th>:</th>
-                                </th>
-                                <td>
-                                    GJ 03 AW 1008                            </td>
-                            </tr>
-                            <tr>
-                                <th align="left" width="25%">
-                                    Gross Weight  <th>:</th>
-                                </th>
-                                <td>
-                                    125463                            </td>
-                            </tr>
-                            <tr>
-                                <th  align="left" width="25%" >
-                                    Tare Weight  <th>:</th>
-                                </th>
-                                <td>
-                                    10700                            </td>
-                            </tr>
-
-                            <tr>
-                                <th align="left" width="25%">
-                                    Net Weight  <th>:</th>
-
-                                </th>
-                                <td>
-                                    114763                            </td>
-                            </tr>
-                           
-                        </tbody></table>
-                </td>
-            </tr>
-        </table>
-
-        </br>
-    </body>
-</html>

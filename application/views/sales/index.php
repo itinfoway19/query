@@ -10,15 +10,18 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">VIEW</h3>
-
+                    <div class="card-tools">
+                        <ul class="nav nav-pills ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="<?= base_url("sales/add") ?>">Add</a>
+                            </li>
+                        </ul>
+                    </div>
 
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-2">
-                            <button type="button" class="btn btn-default download">Output</button>
-                        </div>
-                        <div class="col-md-3 offset-7">
+                       <div class="col-md-3 offset-7">
                             <input class="search sele ctable form-control" type="search" placeholder="Search" data-column="all">
                             <br>
                         </div>
@@ -116,7 +119,7 @@
                                         $sum += $s->net_weight;
                                         $sum_roy += ($s->royalty_id != 0) ? $s->royalty_tone : 0;
                                         ?>
-                                        <tr>
+                                        <tr <?= ($s->status == 1) ? 'class="table-danger"' : "" ?>>
                                             <td><?= $s->date; ?></td>
                                             <td><?= $s->id; ?></td>
                                             <td><?= $s->v_name; ?></td>
@@ -135,8 +138,18 @@
                                             <td><?= ($s->carting_id == 1) ? "SELF" : "CARTING"; ?></td>
                                             <td><?= $s->note; ?></td>
                                             <td>
-                                                <a class="btn btn-success btn-sm ">edit</a>
-                                                <a class="btn btn-danger btn-sm ">Delete</a>
+                                                <?php
+                                                if ($s->status == 0) {
+                                                    ?>
+                                                    <a href="<?= base_url("sales/edit/") . $s->id; ?>" class="btn btn-success btn-sm ">edit</a>
+                                                    <a href="<?= base_url("sales/delete/") . $s->id; ?>" class="btn btn-danger btn-sm ">Delete</a>
+                                                    <?php
+                                                } else {
+                                                    ?>
+                                                    <a href="<?= base_url("sales/print_data/") . $s->id; ?>" target="_blanck" class="btn btn-info btn-sm ">Print</a>
+                                                    <?php
+                                                }
+                                                ?>
                                             </td>
                                         </tr>
                                         <?php

@@ -65,7 +65,7 @@ class Master extends Controller {
         } else {
             $name = base64_decode(urldecode($name));
             $old = $this->input->get("name");
-            $data["base"] = $this->input_tag_model->findname($name, base64_decode(urldecode($old)));
+            $data["base"] = $this->input_tag_model->findname($name, base64_decode(urldecode($old)),$where);
         }
         if ($data["base"] == 0) {
             $data["base"] = FALSE;

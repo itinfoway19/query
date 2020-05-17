@@ -12,10 +12,11 @@
                     <h3 class="card-title">ADD</h3>
 
                     <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                            <i class="fas fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-                            <i class="fas fa-times"></i></button>
+                        <ul class="nav nav-pills ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="<?= base_url("purchase/add") ?>">Add</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="card-body">
@@ -77,33 +78,33 @@
                                 <tfoot>
                                     <tr>
                                         <th colspan="14" class="ts-pager">
-                                            <div class="form-inline">
-                                                <div class="btn-group btn-group-sm mx-1" role="group">
-                                                    <button type="button" class="btn btn-secondary first" title="first">⇤</button>
-                                                    <button type="button" class="btn btn-secondary prev" title="previous">←</button>
-                                                </div>
-                                                <span class="pagedisplay"></span>
-                                                <div class="btn-group btn-group-sm mx-1" role="group">
-                                                    <button type="button" class="btn btn-secondary next" title="next">→</button>
-                                                    <button type="button" class="btn btn-secondary last" title="last">⇥</button>
-                                                </div>
-                                                <select class="form-control-sm custom-select px-1 pagesize" title="Select page size">
-                                                    <option selected="selected" value="1">10</option>
-                                                    <option value="20">20</option>
-                                                    <option value="30">30</option>
-                                                    <option value="all">All Rows</option>
-                                                </select>
-                                                <select class="form-control-sm custom-select px-4 mx-1 pagenum" title="Select page number"></select>
-                                            </div>
-                                        </th>
-                                    </tr>
+                                <div class="form-inline">
+                                    <div class="btn-group btn-group-sm mx-1" role="group">
+                                        <button type="button" class="btn btn-secondary first" title="first">⇤</button>
+                                        <button type="button" class="btn btn-secondary prev" title="previous">←</button>
+                                    </div>
+                                    <span class="pagedisplay"></span>
+                                    <div class="btn-group btn-group-sm mx-1" role="group">
+                                        <button type="button" class="btn btn-secondary next" title="next">→</button>
+                                        <button type="button" class="btn btn-secondary last" title="last">⇥</button>
+                                    </div>
+                                    <select class="form-control-sm custom-select px-1 pagesize" title="Select page size">
+                                        <option selected="selected" value="1">10</option>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                        <option value="all">All Rows</option>
+                                    </select>
+                                    <select class="form-control-sm custom-select px-4 mx-1 pagenum" title="Select page number"></select>
+                                </div>
+                                </th>
+                                </tr>
                                 </tfoot>
                                 <tbody>
                                     <?php
                                     $sum = 0;
                                     foreach ($purchase as $p) {
                                         $sum += $p->net_weight;
-                                    ?>
+                                        ?>
                                         <tr>
                                             <td><?= $p->date; ?></td>
                                             <td><?= $p->id; ?></td>
@@ -123,7 +124,7 @@
                                                 <a class="btn btn-danger btn-sm ">Delete</a>
                                             </td>
                                         </tr>
-                                    <?php
+                                        <?php
                                     }
                                     ?>
                                 </tbody>
@@ -144,7 +145,7 @@
     </div>
 </div>
 <script>
-    $(function() {
+    $(function () {
         var $table = $("#myTable").tablesorter({
             theme: "bootstrap",
             widthFixed: false,
@@ -152,7 +153,7 @@
             widgetOptions: {
                 math_data: 'math',
                 resizable_addLastColumn: true,
-                resizable_widths: ['100px', '100px', '150px', '200px','100px','100px','100px','120px','100px','200px','100px','100px','120px','130px',],
+                resizable_widths: ['100px', '100px', '150px', '200px', '100px', '100px', '100px', '120px', '100px', '200px', '100px', '100px', '120px', '130px', ],
                 zebra: ["even", "odd"],
                 columns: ["primary", "secondary", "tertiary"],
                 filter_searchFiltered: false,

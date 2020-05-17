@@ -10,19 +10,31 @@ class Sales extends Controller {
         $this->load->model("sales_model");
         $this->load->model("input_tag_model");
     }
+
     public function index() {
         $data["sales"] = $this->sales_model->view();
         $this->display('index', $data);
+    }
+
+    public function audit() {
+        $data["sales"] = $this->sales_model->view_where(["status"=>0]);
+        $this->display('audit', $data);
+    }
+    public function statement() {
+        $data["sales"] = $this->sales_model->view_where(["status"=>0]);
+        $this->display('statement', $data);
     }
 
     public function add() {
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
             $capArray = array_map('strtoupper', $this->input->post());
             $data = $this->sales_model->add($capArray);
-            print_r($data);
             if (!empty($data)) {
+                $this->session->set_userdata("success", "Add Successfully");
+                $this->session->set_userdata("print_id", $data);
                 redirect("sales/add");
             } else {
+                $this->session->set_userdata("erorr", "Oops, Something Went Wrong");
                 redirect("sales/add");
             }
         }
@@ -35,9 +47,11 @@ class Sales extends Controller {
             $capArray = array_map('strtoupper', $this->input->post());
             $data = $this->sales_model->edit($capArray, $id);
             if (!empty($data)) {
-                redirect("master/sales/add");
+                $this->session->set_userdata("success", "Add Successfully");
+                redirect("sales/add");
             } else {
-                redirect("master/sales/add");
+                $this->session->set_userdata("erorr", "Oops, Something Went Wrong");
+                redirect("sales/add");
             }
         } else {
             $data = $this->sales_model->view($id);
@@ -45,8 +59,55 @@ class Sales extends Controller {
         $this->display("add", $data[0]);
     }
 
-    public function print_data() {
-        $this->load->view('sales/print');
+    public function model($id) {
+        $this->load->helper('form');
+        if ($this->input->server('REQUEST_METHOD') == 'POST') {
+            $capArray = array_map('strtoupper', $this->input->post());
+            $data = $this->sales_model->edit($capArray, $id);
+            if (!empty($data)) {
+                if (!$this->input->is_ajax_request()) {
+                    $this->session->set_userdata("success", "Add Successfully");
+                    redirect("sales/audit");
+                } else {
+                    echo "TRUE";
+                    return;
+                }
+            } else {
+                if (!$this->input->is_ajax_request()) {
+                    $this->session->set_userdata("erorr", "Oops, Something Went Wrong");
+                    redirect("sales/audit");
+                } else {
+                    echo "FALSE";
+                    return;
+                }
+            }
+        } else {
+            $data = $this->sales_model->view($id);
+        }
+        $this->load->view("sales/model", $data[0]);
+    }
+
+    public function print_data($data) {
+        $getdata["sales"] = $this->sales_model->view($data);
+        $html = $this->load->view('sales/print', $getdata, TRUE);
+        $this->load->library('Pdf');
+        $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->SetTitle('Sales');
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+
+        $pdf->SetAutoPageBreak(true);
+        $pdf->AddPage();
+        $img_file = K_PATH_IMAGES . 'image_demo.png';
+        $angle = 50;
+        $px = 250;
+        $py = 110;
+        $pdf->StartTransform();
+        $pdf->Rotate($angle, $px, $py);
+        $pdf->Image($img_file, 0, 0, 280, 40, 'PNG', '', 'R', true, 300, '', false, false, 0);
+        $pdf->StopTransform();
+        $pdf->writeHTML($html, true, false, true, false, '');
+        $pdf->Output('pdfexample.pdf', 'I');
     }
 
     public function json($name = null) {
@@ -68,7 +129,8 @@ class Sales extends Controller {
                         ->set_status_header(200) // Return status
                         ->set_output(json_encode($data["sales"]));
     }
-    /*public function print_data(){
-          $this->load->view('sales/print');
-    }*/
+
+    /* public function print_data(){
+      $this->load->view('sales/print');
+      } */
 }

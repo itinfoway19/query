@@ -45,7 +45,7 @@ $formTare_weight = array(
     'class' => 'form-control',
     "placeholder" => "Enter Vehicle Tare Weight",
     'readonly' => 'readonly',
-    'value' => isset($formtare_weight) ? $id : "",
+    'value' => isset($tare_weight) ? $tare_weight : "",
 );
 $formNet_weight_no = array(
     'type' => 'text',
@@ -56,7 +56,7 @@ $formNet_weight_no = array(
     'class' => 'form-control',
     "placeholder" => "Enter net weight",
     'readonly' => 'readonly',
-    'value' => isset($net_weight) ? $id : "",
+    'value' => isset($net_weight) ? $net_weight : "",
 );
 $formNote = array(
     'type' => 'text',
@@ -74,6 +74,7 @@ $formRoyalty_no = array(
     'data-validation' => "length",
     "data-validation-length" => "2-55",
     "placeholder" => "Enter Royalty Number",
+    'readonly' => 'readonly',
     'value' => isset($royalty_number) ? $royalty_number : "NO",
 );
 $formRoyalty_tone = array(
@@ -83,6 +84,7 @@ $formRoyalty_tone = array(
     'data-validation' => "length",
     "data-validation-length" => "2-6",
     'class' => 'form-control',
+    'readonly' => 'readonly',
     "placeholder" => "Enter Royalty Tone",
     'value' => isset($royalty_tone) ? $royalty_tone : "NO",
 );
@@ -96,7 +98,7 @@ $formCarting_id = array(
     'id' => 'carting_id',
     'class' => 'form-control',
     "placeholder" => "Enter Carting",
-    'value' => isset($carting_id) ? $id : "",
+    'value' => isset($carting_id) ? $carting_id : "",
 );
 ?>
 
@@ -109,7 +111,13 @@ $formCarting_id = array(
                 <?= form_open(); ?>
                 <div class="card-header">
                     <h3 class="card-title">SALES</h3>
-
+                    <div class="card-tools">
+                        <ul class="nav nav-pills ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="<?= base_url("sales") ?>">View</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row justify-content-between">
@@ -279,12 +287,12 @@ $formCarting_id = array(
             success: function (res) {
                 res = res.data;
                 if (res.length != 0) {
-                    var material_id = <?= isset($material_id) ? $material_id : "''"; ?>;
                     $("#vehicle_id").html("");
                     $("#vehicle_id").append("<option></option>");
+                    var vehicle_id = <?= isset($vehicle_id) ? $vehicle_id : "''"; ?>;
                     for (var i = 0; i < res.length; i++) {
                         vehicleArray[res[i]["id"]] = {vehicle_name: res[i]["vehicle_name"], vehicle_tare_weight: res[i]["vehicle_tare_weight"]};
-                        $("#vehicle_id").append("<option value='" + res[i]["id"] + "' " + ((res[i]["id"] == material_id) ? "selected" : "") + ">" + res[i]["name"] + "</option>")
+                        $("#vehicle_id").append("<option value='" + res[i]["id"] + "' " + ((res[i]["id"] == vehicle_id) ? "selected" : "") + ">" + res[i]["name"] + "</option>")
                     }
                     var $select = $('#vehicle_id').selectize({
                         placeholder: 'Select vehicle',
@@ -548,15 +556,29 @@ $formCarting_id = array(
             }
         });
     });
-    $(document).on("change","#royalty_id",function (){
-        var temp=$(this).val();
-        if(temp>1){
+    $(document).on("change", "#royalty_id", function () {
+        var temp = $(this).val();
+        if (temp > 1) {
             $("#royalty_number").val("");
+            $("#royalty_number").removeAttr("readonly");
             $("#royalty_tone").val("");
-        }else{
+            $("#royalty_tone").removeAttr("readonly");
+        } else {
             $("#royalty_number").val("NO");
+            $("#royalty_number").attr("readonly","readonly");
             $("#royalty_tone").val("NO");
+            $("#royalty_tone").attr("readonly","readonly");
         }
     });
+	   $(function () {
+	<?php
+if ($this->session->has_userdata("print_id")) {
+    ?>
+            window.open("<?= base_url("sales/print_data/") . $this->session->userdata("print_id") ?>");
+    <?php
+    $this->session->unset_userdata("print_id");
+}
+?>
+	   });
 </script>
 

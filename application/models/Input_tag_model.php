@@ -24,10 +24,13 @@ class Input_tag_model extends CI_Model {
         return $data;
     }
 
-    public function findname($where = null, $old = null) {
+    public function findname($where = null, $old = null,$model_where = null) {
         $this->db->trans_start();
         if (!is_null($where)) {
             $this->db->where("name", $where);
+        }
+        if (!is_null($model_where)) {
+            $this->db->where($model_where);
         }
         if (!is_null($old)) {
             $this->db->where("name !=", $old);
