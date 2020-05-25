@@ -74,7 +74,7 @@
                                         ?>
                                         <tr>
                                             <td><?= $u->username; ?></td>
-                                             <td><?= $u->id; ?></td> 
+                                             <td><?= $u->r_name; ?></td> 
                                             <td><?= ($u->flag == 1) ? "Active" : "Dactive"; ?></td>
                                             
                                             <td>
