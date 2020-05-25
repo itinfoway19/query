@@ -18,7 +18,7 @@ class Users_Model extends CI_Model {
         }
         $this->db->select($select);
         $this->db->join("roles as r", "r.id='id'  AND r.id=name");
-         $this->db->order_by("ro.id", "asc");
+        $this->db->order_by("ro.id", "asc");
 
         $query = $this->db->get('users as ro');   
         
