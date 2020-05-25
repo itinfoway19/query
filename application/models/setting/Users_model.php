@@ -16,17 +16,10 @@ class Users_Model extends CI_Model {
         if (!is_null($where)) {
             $this->db->where("id", $where);
         }
-        $this->db->select($select);
-
-        $this->db->join("roles as r", "r.id='id'  AND r.id=name");
-        $this->db->order_by("ro.id", "asc");
+        $this->db->select($select);      
         $this->db->join("roles as r", "r.id=ro.id");
          $this->db->order_by("ro.id", "asc");
-
-
         $query = $this->db->get('users as ro');   
-        
-        //$query = $this->db->get('users');
         $this->db->trans_complete();
         return $query->result();
     }

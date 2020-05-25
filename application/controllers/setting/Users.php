@@ -36,6 +36,7 @@ class Users extends Controller {
         }
         $this->display("add", ["username" => $name]);
     }
+    
 
     public function edit($id) {
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
