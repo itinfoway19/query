@@ -11,16 +11,17 @@ class Users_Model extends CI_Model {
         return $query->last_row();
     }
 
-    public function view($where = null,$select="*") {
+    public function view($where = null,$select = "ro.*,r.name as r_name,r.id as r_id") {
         $this->db->trans_start();
         if (!is_null($where)) {
             $this->db->where("id", $where);
         }
-        $this->db->where("id !=","1");
-        $this->db->where("id !=","2");
-        $this->db->where("id !=","3");
         $this->db->select($select);
-        $this->db->order_by("username", "asc");
+        $this->db->join("roles as r", "r.id='id'  AND r.id=name");
+         $this->db->order_by("ro.id", "asc");
+
+        $query = $this->db->get('users as ro');   
+        
         $query = $this->db->get('users');
         $this->db->trans_complete();
         return $query->result();

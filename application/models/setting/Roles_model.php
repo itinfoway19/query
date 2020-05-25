@@ -1,6 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Roles_Model extends CI_Model {
+
+    public function getId($table) {
+        $this->db->trans_start();
+
+        $query = $this->db->query("SELECT AUTO_INCREMENT as id FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '" . $this->db->database . "' AND   TABLE_NAME = '$table' ");
+        $this->db->trans_complete();
+        return $query->last_row();
+    }
+
      public function view($where = null, $select = "*") {
         $this->db->trans_start();
         if (!is_null($where)) {

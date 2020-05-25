@@ -8,12 +8,14 @@ class Users extends Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model("setting/users_model");
+          $this->load->model("setting/roles_model");
     }
 
     public function index() {
         //$this->display("index");
         $data["users"] = $this->users_model->view();
         $this->display('index', $data);
+        
     }
 
     public function add($name = null) {
@@ -53,7 +55,8 @@ class Users extends Controller {
 
     public function delete($id) {
         $data = $this->users_model->delete($id);
-        return $this->output->set_output($data);
+        //return $this->output->set_output($data);
+         redirect(base_url() . "setting/users/index");  
     }
 
     public function json($name = null) {

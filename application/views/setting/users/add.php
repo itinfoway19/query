@@ -23,10 +23,7 @@ $formPasswordc = [
     "data-validation" => "confirmation",
     "data-validation-confirm" => "password",
 ];
-$formRole = [
-    'name' => 'role',
-    'id' => 'role',
-];
+
 ?>
 <div class="container-fluid">
     <div class="row">
@@ -59,7 +56,8 @@ $formRole = [
                     </div>
                     <div class="form-group">
                         <label>Role</label>
-                        <?= form_dropdown($formRole); ?>
+                        <?= form_dropdown("role", null, isset($role) ? $role : null, [ "id" => "role"]); ?>
+                       
                     </div>
                 </div>
                 <div class="card-footer">

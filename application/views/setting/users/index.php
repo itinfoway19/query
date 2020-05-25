@@ -18,7 +18,7 @@
             </div>     
             <div class="card-body">
                     <div class="row">
-                       <div class="col-md-3 offset-7">
+                       <div class="col-md-3 offset-9">
                             <input class="search sele ctable form-control" type="search" placeholder="Search" data-column="all">
                             <br>
                         </div>
@@ -74,12 +74,12 @@
                                         ?>
                                         <tr>
                                             <td><?= $u->username; ?></td>
-                                             <td><?= $u->role; ?></td> 
-                                            <td><?= ($u->flag == 1) ? "Yes" : "No"; ?></td>
+                                             <td><?= $u->id; ?></td> 
+                                            <td><?= ($u->flag == 1) ? "Active" : "Dactive"; ?></td>
                                             
                                             <td>
-                                                <a class="btn btn-success btn-sm ">edit</a>
-                                                <a class="btn btn-danger btn-sm ">Delete</a>
+                                                <a  href="<?= base_url("setting/users/edit/"). $u->id; ?>" class="btn btn-success btn-sm ">edit</a>
+                                                <a  href="<?= base_url("setting/users/delete/"). $u->id; ?> "class="btn btn-danger btn-sm ">Delete</a>
                                             </td>
                                         </tr>
                                         <?php

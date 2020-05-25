@@ -11,6 +11,7 @@ class Roles extends Controller {
     }
 
     public function index() {
+         $data["roles"] = $name;
         $data["roles"] = $this->roles_model->view();
         $getmenu = $this->menu_model->view();
 
