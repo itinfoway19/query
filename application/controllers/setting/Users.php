@@ -11,7 +11,9 @@ class Users extends Controller {
     }
 
     public function index() {
-        $this->display("index");
+        //$this->display("index");
+        $data["users"] = $this->users_model->view();
+        $this->display('index', $data);
     }
 
     public function add($name = null) {
@@ -73,5 +75,6 @@ class Users extends Controller {
                         ->set_status_header(200)
                         ->set_output(json_encode($data["users"]));
     }
+    
 
 }
