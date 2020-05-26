@@ -14,6 +14,7 @@ class Users extends Controller {
     public function index() {
         //$this->display("index");
         $data["users"] = $this->users_model->view();
+        //print_r($data["users"]);
         $this->display('index', $data);
         
     }
@@ -36,13 +37,11 @@ class Users extends Controller {
         }
         $this->display("add", ["username" => $name]);
     }
-    
 
     public function edit($id) {
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
-            $a=$this->input->post();
-            $a["password"]=md5($this->input->post("password"));
-            $data = $this->users_model->edit($a, $id);
+             $capArray = array_map('strtoupper', $this->input->post());
+             $data = $this->users_model->edit($capArray, $id);
             if (!empty($data)) {
                 redirect("setting/users/add");
             } else {

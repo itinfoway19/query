@@ -14,12 +14,12 @@ class Users_Model extends CI_Model {
     public function view($where = null,$select = "ro.*,r.name as r_name,r.id as r_id") {
         $this->db->trans_start();
         if (!is_null($where)) {
-            $this->db->where("id", $where);
+            $this->db->where("ro.id", $where);
         }
         $this->db->select($select);      
-        $this->db->join("roles as r", "r.id=ro.id");
+        $this->db->join("roles as r", "r.id=ro.role");
          $this->db->order_by("ro.id", "asc");
-        $query = $this->db->get('users as ro');   
+        $query = $this->db->get('users as ro ');   
         $this->db->trans_complete();
         return $query->result();
     }
@@ -35,7 +35,7 @@ class Users_Model extends CI_Model {
             $this->db->where("username !=", $old);
         }
         $this->db->select("username");
-        $this->db->order_by("username", "asc");
+        $this->db->order_by("id", "asc");
         $query = $this->db->get('users');
         $this->db->trans_complete();
         return $query->num_rows();
