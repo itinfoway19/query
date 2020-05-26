@@ -11,8 +11,7 @@ class Roles extends Controller {
     }
 
     public function index() {
-         $data["roles"] = $name;
-        $data["roles"] = $this->roles_model->view();
+       $data["roles"] = $this->roles_model->view();
         $getmenu = $this->menu_model->view();
 
         $data["menu"] = array(
@@ -59,8 +58,10 @@ class Roles extends Controller {
     }
 
     public function delete($id) {
+       
         $data = $this->roles_model->delete($id);
-        return $this->output->set_output($data);
+        //return $this->output->set_output($data);
+         redirect(base_url() . "setting/roles/index"); 
     }
 
     public function json($name = null) {
