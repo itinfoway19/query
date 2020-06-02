@@ -574,7 +574,8 @@ $formCarting_id = array(
 	<?php
 if ($this->session->has_userdata("print_id")) {
     ?>
-            window.open("<?= base_url("sales/print_data/") . $this->session->userdata("print_id") ?>");
+		window.location ="<?= base_url("sales/print_data/") . $this->session->userdata("print_id") ?>";
+            //window.open("<?= base_url("sales/print_data/") . $this->session->userdata("print_id") ?>");
     <?php
     $this->session->unset_userdata("print_id");
 }
