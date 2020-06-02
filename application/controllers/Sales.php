@@ -47,6 +47,7 @@ class Sales extends Controller {
             $capArray = array_map('strtoupper', $this->input->post());
             $data = $this->sales_model->edit($capArray, $id);
             if (!empty($data)) {
+				$this->session->set_userdata("print_id", $id);
                 $this->session->set_userdata("success", "Add Successfully");
                 redirect("sales/add");
             } else {
