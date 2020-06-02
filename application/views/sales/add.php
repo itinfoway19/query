@@ -574,7 +574,7 @@ $formCarting_id = array(
 	<?php
 if ($this->session->has_userdata("print_id")) {
     ?>
-		$("body").append("<a href='<?= base_url("sales/print_data/") . $this->session->userdata("print_id") ?>' target='_blank' class='d-none' id='printtag'>");
+		$("body").append("<a href='<?= base_url("sales/print_data/") . $this->session->userdata("print_id") ?>' target='_blank' class='d-none' id='printtag'></a>");
 		$("#printtag").click();
             //window.open("<?= base_url("sales/print_data/") . $this->session->userdata("print_id") ?>");
     <?php
