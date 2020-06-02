@@ -36,7 +36,7 @@ class Sales_model extends CI_Model {
     public function view_where($where = null, $select = "pu.*,m.name as m_name,m.id as m_id,p.name as p_name,p.id as p_id,py.name as py_name,py.id as py_id,l.name as l_name,l.id as l_id,ry.name as ry_name,ry.id as ry_id,d.name as d_name,d.id as d_id,v.name as v_name,v.id as v_id") {
         $this->db->trans_start();
         if (!is_null($where)) {
-            $this->db->where("pu.id", $where);
+            $this->db->where($where);
         }
         $this->db->select($select);
         $this->db->join("input_tag as m", "m.tag_id='MATERIAL' AND m.module=2 AND m.id=material_id");
