@@ -319,7 +319,7 @@ $formCourt_note = array(
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Investment Detail</label></br>
+                                    <label>INSURANCE Detail</label></br>
                                     <label >  <input name="insurance" type="radio" class="" value="1"<?php
                                         if (isset($employee->insurance) && $employee->insurance == '1') {
                                             echo "checked='checked'";
