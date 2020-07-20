@@ -17,11 +17,29 @@ class Sales extends Controller {
     }
 
     public function audit() {
-        $data["sales"] = $this->sales_model->view_where(["status"=>0]);
+        $data["sales"] = $this->sales_model->view_where(["status" => 0]);
         $this->display('audit', $data);
     }
+
+    public function rate() {
+        if ($this->input->server('REQUEST_METHOD') == 'GET') {
+             $fromdate=$this->input->get("from");
+            $todate=$this->input->get("to");
+            $data["sales"] = $this->sales_model->view_where(["date >"=>$fromdate,"date <"=>$todate]);
+        }else{
+             $data["sales"] = $this->sales_model->view_where();
+        }
+        $this->display('rate', $data);
+    }
+
     public function statement() {
-        $data["sales"] = $this->sales_model->view_where(["status"=>0]);
+        if ($this->input->server('REQUEST_METHOD') == 'POST') {
+            $fromdate=$this->input->get("from");
+            $todate=$this->input->get("to");
+            $data["sales"] = $this->sales_model->view_where(["date <"=>$fromdate,"date >"=>$todate]);
+        }else{
+            $data["sales"] = $this->sales_model->view_where();
+        }
         $this->display('statement', $data);
     }
 
@@ -47,7 +65,7 @@ class Sales extends Controller {
             $capArray = array_map('strtoupper', $this->input->post());
             $data = $this->sales_model->edit($capArray, $id);
             if (!empty($data)) {
-				$this->session->set_userdata("print_id", $id);
+                $this->session->set_userdata("print_id", $id);
                 $this->session->set_userdata("success", "Add Successfully");
                 redirect("sales/add");
             } else {
