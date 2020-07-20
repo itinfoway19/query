@@ -72,7 +72,7 @@
                                             <td><?= $d->vehicle_name; ?></td>
                                             <td><?= $d->vehicle_tare_weight; ?></td>
                                             <td>
-                                                <a class="btn btn-success btn-sm ">edit</a>
+                                                <a href="<?=base_url("vehicle/edit/"). $d->id?>" class="btn btn-success btn-sm ">edit</a>
                                                 <a class="btn btn-danger btn-sm ">Delete</a>
                                             </td>
                                         </tr>

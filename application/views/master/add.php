@@ -6,6 +6,7 @@ $formName = array(
     "data-validation" => "length,unique",
     "data-validation-length"=>"1-100",
     "placeholder" => "Enter $title",
+    'value'=>isset($data->name)?$data->name:"",
 );
 $formModule = array(
     'type' => 'hidden',
@@ -17,6 +18,7 @@ $formTag_id = array(
     'name' => 'tag_id',
     "value" => $title,
 );
+
 ?>
 <div class="container-fluid">
     <div class="row">
@@ -54,6 +56,7 @@ $formTag_id = array(
     </div>
 </div>
 <script>
+uniquename='<?=isset($data->name)?$data->name:"" ?>';
     $.extend({
         xResponse: function (data) {
             var d = null;

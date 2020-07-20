@@ -562,13 +562,16 @@ $formCarting_id = array(
             $("#royalty_number").val("");
             $("#royalty_number").removeAttr("readonly");
             $("#royalty_tone").val("");
+            $("#royalty_tone").attr("data-validation","length number");
             $("#royalty_tone").removeAttr("readonly");
         } else {
             $("#royalty_number").val("NO");
             $("#royalty_number").attr("readonly","readonly");
             $("#royalty_tone").val("NO");
+            $("#royalty_tone").attr("data-validation","length");
             $("#royalty_tone").attr("readonly","readonly");
         }
+        setupValidation();
     });
 	   
 	<?php

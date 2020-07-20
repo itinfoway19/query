@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?= base_url("assert/css/jquery.dataTables.min.css") ?>"> 
+<link rel="stylesheet" href="<?= base_url("assert/css/jquery.dataTables.min.css") ?>">
 <script src="<?= base_url("assert/js/datatables.min.js") ?>"></script>
 <script src="<?= base_url("assert/js/datatable_function.js") ?>"></script>
 <div class="container-fluid">

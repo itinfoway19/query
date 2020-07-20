@@ -81,23 +81,23 @@ while ($row = mysqli_fetch_assoc($sales)) {
 			while ($vehicleRow = mysqli_fetch_assoc($vehicleId)) {
 				$vehicleSetId=$vehicleRow["id"];				
 			}
-			$materialId= mysqli_query($db2, "SELECT id FROM `input_tag` where tag_id='MATERIAL' AND AND module=2 name='".$row['nw_sales_material']."'");
+			$materialId= mysqli_query($db2, "SELECT id FROM `input_tag` where tag_id='MATERIAL' AND module=2  AND name='".$row['nw_sales_material']."'");
 			while ($materialIdrow = mysqli_fetch_assoc($materialId)) {
 				$material_id=$materialIdrow["id"];				
 			}
-			$placeId= mysqli_query($db2, "SELECT id FROM `input_tag` where tag_id='PLACE' AND AND module=2 name='".$row['nw_sales_place']."'");
+			$placeId= mysqli_query($db2, "SELECT id FROM `input_tag` where tag_id='PLACE' AND module=2 AND  name='".$row['nw_sales_place']."'");
 			while ($placeIdrow = mysqli_fetch_assoc($placeId)) {
 				$place_id=$placeIdrow["id"];				
 			}
-			$royaltyId= mysqli_query($db2, "SELECT id FROM `input_tag` where tag_id='ROYALTY' AND AND module=2 name='".$row['nw_sales_royalty_name']."'");
+			$royaltyId= mysqli_query($db2, "SELECT id FROM `input_tag` where tag_id='ROYALTY' AND module=2 AND  name='".$row['nw_sales_royalty_name']."'");
 			while ($royaltyIdrow = mysqli_fetch_assoc($royaltyId)) {
 				$royalty_id=$royaltyIdrow["id"];				
 			}
-			$salesdriverId= mysqli_query($db2, "SELECT id FROM `input_tag` where tag_id='DRIVER' AND AND module=2 name='".$row['nw_sales_driver_name']."'");
+			$salesdriverId= mysqli_query($db2, "SELECT id FROM `input_tag` where tag_id='DRIVER' AND module=2 AND  name='".$row['nw_sales_driver_name']."'");
 			while ($salesdriverIdrow = mysqli_fetch_assoc($salesdriverId)) {
 				$driver_id=$salesdriverIdrow["id"];				
 			}
-			$partyId= mysqli_query($db2, "SELECT id FROM `input_tag` where tag_id='PARTY' AND AND module=2  name='".$row['nw_sales_party_name']."'");
+			$partyId= mysqli_query($db2, "SELECT id FROM `input_tag` where tag_id='PARTY' AND module=2 AND   name='".$row['nw_sales_party_name']."'");
 			while ($partyIdrow = mysqli_fetch_assoc($partyId)) {
 				$party_id=$partyIdrow["id"];				
 			}

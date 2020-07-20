@@ -20,7 +20,6 @@ class Purchase extends Controller {
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
             $capArray = array_map('strtoupper', $this->input->post());
             $data = $this->purchase_model->add($capArray);
-            print_r($data);
             if (!empty($data)) {
                 redirect("purchase/add");
             } else {

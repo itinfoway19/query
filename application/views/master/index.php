@@ -64,7 +64,7 @@
                                         <tr>
                                             <td><?= $d->name; ?></td>
                                             <td>
-                                                <a class="btn btn-success btn-sm ">edit</a>
+                                                <a href="<?=base_url("master/edit/".$tag_id."/".$module."/".$d->id)?>" class="btn btn-success btn-sm ">edit</a>
                                                 <a class="btn btn-danger btn-sm ">Delete</a>
                                             </td>
                                         </tr>

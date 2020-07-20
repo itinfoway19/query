@@ -56,6 +56,26 @@ class Master extends Controller {
         }
     }
 
+    public function edit($title, $module, $id) {
+        if ($this->input->server('REQUEST_METHOD') == 'POST') {
+            $capArray = array_map('strtoupper', $this->input->post());
+            $data = $this->input_tag_model->edit($capArray,$id);
+            if (!empty($data)) {
+                redirect("master/index/" . $title . "/" . $module);
+            } else {
+                redirect("master/index/" . $title . "/" . $module);
+            }
+        } else {
+            
+            $data["id"] = $id;
+            $data["tag_id"] = $title;
+            $data["module"] = $module;
+            $data["data"]=$this->input_tag_model->view($data)[0];
+            $data["title"] = $title;
+            
+            $this->display("add", $data);
+        }
+    }
     public function json($title, $module, $name = null) {
         $where["tag_id"] = $title;
         $where["module"] = $module;
